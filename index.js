@@ -3,15 +3,15 @@ const app = express();
 
 const bicycles = require("./data/data.json");
 
+app.set("view engine", "ejs");
+
 app.get("/", (req, res) => {
-  res.send(bicycles);
+  return res.render("bicycles");
 });
 
 app.get("/bicycle", (req, res) => {
-  console.log(req.query.id);
-
   const bicycle = bicycles.find((b) => b.id === req.query.id);
-  return res.send(bicycle);
+  return res.render("overview");
 });
 app.listen(3000, () => {
   console.log("Server is running on port 3000");
