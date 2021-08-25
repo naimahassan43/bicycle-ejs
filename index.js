@@ -6,10 +6,14 @@ const bicycles = require("./data/data.json");
 app.set("view engine", "ejs");
 app.use(express.static("public"));
 
+//Home Page
 app.get("/", (req, res) => {
-  return res.render("bicycles");
+  return res.render("bicycles", {
+    bicycles,
+  });
 });
 
+//Overview page
 app.get("/bicycle", (req, res) => {
   const bicycle = bicycles.find((b) => b.id === req.query.id);
   return res.render("overview", {
